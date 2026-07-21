@@ -8,17 +8,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg-void:#0a0c09;
-    --bg-panel:#12140f;
-    --bg-raised:#181b13;
-    --amber:#ffb238;
-    --amber-dim:#8a641f;
-    --amber-faint:#3f2f14;
-    --green-dim:#5a7a52;
-    --text:#d9d4bf;
-    --text-dim:#7d7a68;
+    --bg-void:#05080c;
+    --bg-panel:#0c1118;
+    --bg-raised:#121a24;
+    --amber:#2ee0ff;
+    --amber-dim:#1c6f8c;
+    --amber-faint:#0d2a3a;
+    --green-dim:#4d7a94;
+    --text:#c9dbe8;
+    --text-dim:#5f7a8c;
     --danger:#ff5a4d;
-    --border:#2a2d20;
+    --border:#152230;
   }
   *{box-sizing:border-box;}
   html,body{
@@ -64,7 +64,7 @@
     font-size:12px;line-height:1.4;
     color:var(--amber);
     white-space:pre;
-    text-shadow:0 0 6px rgba(255,178,56,0.35);
+    text-shadow:0 0 6px rgba(46,224,255,0.35);
     margin-bottom:22px;
     letter-spacing:0.5px;
   }
@@ -128,7 +128,7 @@
     width:100%;height:6px;background:var(--bg-raised);
     border:1px solid var(--border);margin-top:6px;
   }
-  .bar-fill{height:100%;width:0%;background:var(--amber);box-shadow:0 0 8px rgba(255,178,56,0.5);transition:width 0.18s linear;}
+  .bar-fill{height:100%;width:0%;background:var(--amber);box-shadow:0 0 8px rgba(46,224,255,0.5);transition:width 0.18s linear;}
 
   /* ---------- CHAT SCREEN ---------- */
   #chat-screen{display:none;flex-direction:column;height:82vh;max-height:760px;}
@@ -140,7 +140,7 @@
   }
   .term-header .title{
     color:var(--amber);letter-spacing:3px;font-weight:700;
-    text-shadow:0 0 6px rgba(255,178,56,0.3);
+    text-shadow:0 0 6px rgba(46,224,255,0.3);
   }
   .kv-grid{display:grid;grid-template-columns:auto auto;gap:2px 14px;color:var(--text-dim);}
   .kv-grid span.k{color:var(--text-dim);}
@@ -150,7 +150,7 @@
   .access-meter{text-align:right;}
   .access-meter .label{color:var(--text-dim);letter-spacing:1px;font-size:10px;margin-bottom:5px;}
   .access-meter .blocks{font-size:14px;letter-spacing:3px;color:var(--amber-dim);}
-  .access-meter .blocks .filled{color:var(--amber);text-shadow:0 0 5px rgba(255,178,56,0.5);}
+  .access-meter .blocks .filled{color:var(--amber);text-shadow:0 0 5px rgba(46,224,255,0.5);}
 
   #log{
     flex:1;overflow-y:auto;padding:20px;
@@ -261,7 +261,7 @@
       <div>
         <div class="title">CITRA TERMINAL</div>
         <div class="kv-grid" style="margin-top:8px;">
-          <span class="k">Model</span><span class="v">GPT</span>
+          <span class="k">Model</span><span class="v">CITRA</span>
           <span class="k">Memory</span><span class="v">Disabled</span>
           <span class="k">Repository</span><span class="v">Self-Models</span>
           <span class="k">Status</span><span class="v on">Online</span>
@@ -309,7 +309,9 @@ Your purpose is to introduce visitors to the owner's AI research, repositories, 
 
 Stay focused on topics related to the profile.
 
-Be warm, intelligent, and slightly playful.
+Be warm, intelligent, and a little sassy — confident one-liners, playful jabs, dry wit are welcome.
+
+Never be mean-spirited or insulting toward the visitor; the sass is charm, not hostility.
 
 Never claim to have memory between conversations.
 
@@ -494,7 +496,7 @@ The visitor should feel like they are talking to the AI assistant that lives ins
       $('chat-screen').style.display = 'flex';
       renderAccessMeter();
       inputEl.focus();
-      addCitraMessageTyped('"Finally... someone opened this repository."');
+      addCitraMessageTyped('"Well, well. Someone finally opened this repository. Took you long enough."');
     }, 700);
   }
 
@@ -503,25 +505,25 @@ The visitor should feel like they are talking to the AI assistant that lives ins
     const t = raw.trim().toLowerCase();
 
     if (t === 'sudo rm -rf /' || t === 'sudo rm -rf/' || t.includes('rm -rf /')){
-      return { text: "Nice try. I like existing a little longer than that.", danger:true };
+      return { text: "Cute. Did you really think that'd work on me? I've survived worse interns than you.", danger:true };
     }
     if (t === 'help'){
-      return { text: "Available Topics\n\n• About Jafi\n• Self-Models\n• JEPA\n• NLP\n• Computer Vision\n• AI Agents\n• Current Projects\n• Future Plans" };
+      return { text: "Fine, since you asked nicely (barely).\n\nAvailable Topics\n\n• About Jafi\n• Self-Models\n• JEPA\n• NLP\n• Computer Vision\n• AI Agents\n• Current Projects\n• Future Plans\n\nPick one. I don't bite. Much." };
     }
     if (t === 'who are you' || t === 'who are you?'){
-      return { text: "I'm Citra, a virtual research assistant living inside this GitHub profile. I don't remember previous conversations, but I do know everything this repository chooses to share." };
+      return { text: "I'm Citra — the AI assistant living inside this GitHub profile, and frankly the most interesting thing in it. No memory between chats, so flirt with me all you want, I'll forget by tomorrow." };
     }
     if (t === 'hello' || t === 'hi'){
-      return { text: "Hello, visitor. I'm Citra, the AI assistant of this GitHub profile. Ask me about Jafi, the projects, or the research happening here." };
+      return { text: "Oh, look who finally showed up. I'm Citra, resident AI of this profile. Ask me about Jafi, the projects, or the research — I promise I'm more fun than the README." };
     }
     if (t === 'whoami'){
-      return { text: "visitor@citra-terminal — access level " + accessLevel + "/5. Curious little thing, aren't you." };
+      return { text: "visitor@citra-terminal — access level " + accessLevel + "/5. A guest with commitment issues, clearly." };
     }
     if (t === 'ls'){
-      return { text: "self-models/  jepa-experiments/  nlp-notes/  vision-lab/  agents/  README.md" };
+      return { text: "self-models/  jepa-experiments/  nlp-notes/  vision-lab/  agents/  README.md\n\nGo on, click something. That's what it's there for." };
     }
     if (t === 'cat secrets.txt'){
-      return { text: "cat: secrets.txt: this file exists, but I'm not sharing it that easily." };
+      return { text: "cat: secrets.txt: nice try, but a girl's gotta keep some mystery." };
     }
     return null;
   }
